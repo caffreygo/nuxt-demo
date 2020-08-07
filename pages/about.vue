@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    {{text}}
-    <el-button type="primary">按钮</el-button>
+    {{profileName}}
+    <el-button type="primary" @click="onNameUpdate">更新名字</el-button>
   </div>
 </template>
 
@@ -16,6 +16,16 @@ export default {
   },
   mounted() {
     console.log(window); // Window {postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, frames: Window, …}
+  },
+  computed: {
+    profileName() {
+      return this.$store.state.profile.name;
+    },
+  },
+  methods: {
+    onNameUpdate() {
+      this.$store.commit('profile/SET_NAME', 'new name');
+    },
   },
 };
 </script>
